@@ -47,7 +47,7 @@ Przeniesienia do HMS możesz dokonać na kilka sposobów. To, które wybierzesz,
 
 # Jak testować?
 
-Oczywiście najlepiej kupić któryś z ostatnich Huawei, ale jeśli nie mamy takiej możliwości, pomocna będzie wspomniana już [wtyczka][hms-toolkit]. Usługa [Cloud Debugging][cloud-debugging] umożliwia ona testowanie aplikacji na telefonie z farmy urządzeń. Usługa jest darmowa. Jedynym ograniczeniami jest konieczność zmiany urządzenia co dwie godziny i ponownego zalogowania po dwudziestu godzinach korzystania. Urządzenie jest widoczne w Android Studio, można stawiać breakpointy i czytać Logcata, tak jakby ten telefon miało się na biurku.
+Oczywiście najlepiej kupić któryś z ostatnich Huawei, ale jeśli nie mamy takiej możliwości, pomocna będzie wspomniana już [wtyczka][hms-toolkit]. Usługa [Cloud Debugging][hms-cloud-debugging] umożliwia ona testowanie aplikacji na telefonie z farmy urządzeń. Usługa jest darmowa. Jedynym ograniczeniami jest konieczność zmiany urządzenia co dwie godziny i ponownego zalogowania po dwudziestu godzinach korzystania. Urządzenie jest widoczne w Android Studio, można stawiać breakpointy i czytać Logcata, tak jakby ten telefon miało się na biurku.
 
 Brakuje nieco możliwości uruchomienia zwykłego emulatora z EMUI z poziomu AVD Manager. Największą wadą usługi jest jej powolne działanie - długi czas reakcji na kliknięcie czy długi czas pobierania podczas debugowania aplikacji. Jedynym wyjściem będzie skorzystanie z rozwiązania typu [Genymotion][genymotion].
 
