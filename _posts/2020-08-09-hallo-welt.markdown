@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Hallo Welt!"
-date:   2020-08-09 19:00:00 +0200
+date:   2020-08-10 00:00:00 +0200
 categories: autotematycznie
 ---
 Będę tu pisać o tworzeniu aplikacji mobilnych, głównie na Androida. Bloga kieruje głównie do średnio zaawansowanych programistów mobilnych, jednak myślę, że mniej techniczne wpisy (takie bez kodu) mogą zainteresować także kierowników projektów. Nie planuję tworzyć tutoriali o tym, jak stworzyć pierwszą aplikację mobilną. 
