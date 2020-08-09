@@ -1,29 +1,34 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-date:   2020-08-08 16:22:25 +0200
-categories: jekyll update
+title:  "Huawei Mobile Services"
+date:   2020-08-09 20:00:00 +0200
+categories: Android
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+Najnowsze telefony Huawei (Huawei P40 i P40 Pro, seria Mate 30, Mate Xs oraz Honor 30) nie mają dostępu do Sklepu Play do Usług Google Play. Oznacza to mniej więcej tyle, że jeśli stworzyłeś aplikację na system Android i wrzuciłeś ją tylko do Sklepu Play, to użytkownicy najnowszych telefonów Huawei nie będą ich mogli pobrać ze Sklepu Play, bo nie będą go mieli na swoim telefonie. Specjalnie dla nich trzeba teraz aplikację wrzucać do Huawei App Gallery, jednak bardzo możliwe, że wrzucenie tego samego pliku do obu sklepów nie rozwiąże całkowicie problemu. Jeśli masz w swojej aplikacji którąkolwiek funkcjonalności:
+- mapy
+- pobieranie lokalizacji
+- geofencing
+- komunikaty push
+- app linki
+- logowanie kontem
+- reklamy
+- analitykę
+- skanowanie kodów kreskowych i QR
+- zakupy w aplikacji
+- platność kartą
+- instant app
+- zapis danych do chmury
 
-Jekyll requires blog post files to be named according to the following format:
+i za dostarczenie jej odpowiada biblioteka Google Play Services, to możesz być pewien, że nie będą one działać na najnowszych telefonach Huawei.
 
-`YEAR-MONTH-DAY-title.MARKUP`
+Należy się spodziewać próśb od klientów - a najlepiej wycenić narzut czasowy i samemu im to zaproponować - o dostosowanie aplikacji do działania na smartfonach Huawei. Przekonanie ich do realizacji nie powinno być trudne. Jeśli masz w swoim projekcie podpiętą analitykę, jesteś w stanie bardzo szybko sprawdzić, jaki udział użytkowników aplikacji stanowili do tej pory posiadacze telefonów marki Huawei. Jeśli w twojej aplikacji można coś kupić, można przefiltrować w panelu Firebase, ile pieniędzy wydali ci użytkownicy. O ile klient nie będzie musiał zapłacić za rozbudowę więcej niż może zarobić, najprawdopodobniej się na nią zgodzi. Możliwe, że w najbliższym czasie nastąpi odwrót użytkowników od Huawei z powodu braku dostępności aplikacji, ale póki co nic na to nie wskazuje. Firma odnotowała w tym roku spadek liczby sprzedanych urządzeń, jednak procentowy udział na rynku się nie zmienił. Takie spadki odnotował właściwie każdy producent smartfonów i są one spowodowane rececją światowej gospodarki. Huawei ciągle pozostaje drugą po Samsungu marką smartfonów z Androidem. Dbania o posiadaczy jego urządzeń będzie wiązało się z większymi nakładami czasowymi niż ze wspierania urządzeń sprzed pięciu lat, jednak korzyści też będą większe.
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+Jak się do tego zabrać
 
-Jekyll also offers powerful support for code snippets:
+Przemyślenia
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+W ostatnim czasie zajmowałem się rozbudową dwóch aplikacji, by na urządzeniach Huawei aplikacje odbierały powiadomienia push, można było logować się kontem Huawei ID, dało się nimi odczytywać kody QR i aby działało raportowanie analityki. Po zakończeniu prac nad 
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+Problemy
 
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+Jak to wycenić

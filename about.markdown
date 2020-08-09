@@ -1,18 +1,11 @@
 ---
 layout: page
-title: About
+title: O mnie
 permalink: /about/
 ---
+Nazywam się Dawid Jewdokimow i od 2015 roku zawodowo piszę aplikacje na system Android. Po pracy zdarza mi się pisać własne apki, ale do końca doprowadziłem i opublikowałem chyba tylko [tę][side-project].
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Z jakiegoś powodu wszyscy w tego typu sekcjach piszą o tym, co robią w wolnym czasie, więc ja też się pochwalę. Bezskutecznie próbuję nauczyć się języka niemieckiego, oglądam filmy z całego świata i szukam ciekawej muzyki, której mogę potem [słuchać w pracy][music]. 
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+[side-project]: https://play.google.com/store/apps/details?id=com.jewdokimow.likeapilot&hl=pl
+[music]: /music/
