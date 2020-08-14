@@ -5,9 +5,9 @@ date:   2020-08-10 00:10:00 +0200
 categories: Android
 ---
 
-(Tekst pilotażowy, niedokończony, w trakcie edycji)
+[English translation soon]
 
-Najnowsze telefony Huawei (Huawei P40 i P40 Pro, seria Mate 30, Mate Xs oraz Honor 30) nie mają dostępu do Sklepu Play do Usług Google Play. Oznacza to mniej więcej tyle, że jeśli stworzyłeś aplikację na system Android i wrzuciłeś ją tylko do Sklepu Play, to użytkownicy najnowszych telefonów Huawei nie będą ich mogli jej pobrać. Specjalnie dla nich trzeba teraz aplikację wrzucać do Huawei App Gallery, jednak bardzo możliwe, że wrzucenie tego samego pliku do obu sklepów nie rozwiąże całkowicie problemu. Jeśli masz w swojej aplikacji którąkolwiek z tych funkcjonalności:
+Najnowsze telefony Huawei (Huawei P40 i P40 Pro, seria Mate 30, Mate Xs) i Honor (Honor 30) nie mają dostępu do Sklepu Play do Usług Google Play. Oznacza to mniej więcej tyle, że jeśli stworzyłeś aplikację na system Android i wrzuciłeś ją tylko do Sklepu Play, to użytkownicy najnowszych telefonów Huawei nie będą ich mogli jej pobrać. Specjalnie dla nich trzeba teraz aplikację wrzucać do Huawei App Gallery, jednak bardzo możliwe, że wrzucenie tego samego pliku do obu sklepów nie rozwiąże całkowicie problemu. Jeśli masz w swojej aplikacji którąkolwiek z tych funkcjonalności:
 - mapy
 - pobieranie lokalizacji
 - geofencing
@@ -22,7 +22,7 @@ Najnowsze telefony Huawei (Huawei P40 i P40 Pro, seria Mate 30, Mate Xs oraz Hon
 - instant app
 - zapis danych do chmury
 
-i za dostarczenie jej odpowiada biblioteka Google Play Services, to możesz być pewien, że nie będą one działać na najnowszych telefonach Huawei.
+i za dostarczenie jej odpowiada biblioteka Google Play Services, to możesz być pewien, że nie będą one działać na najnowszych telefonach Huawei. Czytając [komentarze na stronie Usług Google Play w markecie][google-play-services], można odnieść wrażenie, że przeciętny użytkownik nie zdaje sobie sprawy z tego, czym one są i do czego ich potrzebuje na telefonie. Z pewnością zauważy jednak brak tych funkcjonalności i nie będzie z jego powodu zadowolony. Aplikacja może zamiast map wyświetlić komunikat o braku Usług Google Play. Możliwe, że użytkownik będzie próbował je wtedy zainstalować, co wcale nie musi się udać. Dlatego też Huawei przygotował Huawei Mobile Services - alternatywę dla Usług Google Play. Użycie ich wymaga jednak od programisty zmian po stronie aplikacji.
 
 Należy się spodziewać próśb od klientów - a najlepiej wycenić narzut czasowy i samemu im to zaproponować - o dostosowanie aplikacji do działania na smartfonach Huawei. Przekonanie ich do realizacji nie powinno być trudne. Jeśli masz w swoim projekcie podpiętą analitykę, jesteś w stanie bardzo szybko sprawdzić, jaki udział użytkowników aplikacji stanowili do tej pory posiadacze telefonów marki Huawei. Jeśli w twojej aplikacji można coś kupić, można przefiltrować w panelu Firebase, ile pieniędzy wydali ci użytkownicy. O ile klient nie będzie musiał zapłacić za rozbudowę więcej niż może zarobić, najprawdopodobniej się na nią zgodzi. Możliwe, że w najbliższym czasie nastąpi odwrót użytkowników od Huawei z powodu braku dostępności aplikacji, ale póki co nic na to nie wskazuje. Firma odnotowała w tym roku spadek liczby sprzedanych urządzeń, jednak procentowy udział na rynku się nie zmienił. Takie spadki odnotował właściwie każdy producent smartfonów i są one spowodowane rececją światowej gospodarki. Huawei ciągle pozostaje drugą po Samsungu marką smartfonów z Androidem. Dbania o posiadaczy jego urządzeń będzie wiązało się z większymi nakładami czasowymi niż ze wspierania urządzeń sprzed pięciu lat, jednak korzyści też będą większe.
 
@@ -34,33 +34,47 @@ Pierwsza rzeczą, jaką powinieneś zrobić, to [instalacja wtyczki w Android St
 
 Przeniesienia do HMS możesz dokonać na kilka sposobów. To, które wybierzesz, najprawdopodobniej będzie zależało od tego, jak dużo bibliotek musisz zastąpić ich HMS-owymi odpowiednikami i jak dużo czasu możesz poświęcić na wprowadzanie tych zmian.
 1. Ręcznie.
-- Tworzysz nowy flavor Gradle przeznaczony do budowania wersji do HUAWEI AppGallery.
-- Dołączasz biblioteki Huawei, najlepiej tylko do tego konkretnego flavoru (`huaweiImplementation 'com.huawei.hms:maps:{version}`, jeśli flavor został nazwany „huawei”)
-- Tworzysz wspólne interfejsy dla implementacji do Google Play Store i HUAWEI AppGallery.
-- Posiłkując się instrukcjami przygotowanymi przez Huawei ([takimi jak te][codelab-example]), implementujesz klasy używane przez flavor Huawei.
+- Stwórz nowy flavor Gradle przeznaczony do budowania wersji do HUAWEI AppGallery.
+- Dołącz biblioteki Huawei, najlepiej tylko do tego konkretnego flavoru (`huaweiImplementation 'com.huawei.hms:maps:{version}`, jeśli flavor został nazwany „huawei”)
+- Stwórz wspólne interfejsy dla implementacji do Google Play Store i HUAWEI AppGallery.
+- Posiłkując się instrukcjami przygotowanymi przez Huawei ([takimi jak te][codelab-example]), zaimplementuj klasy używane przez flavor Huawei.
 : Jest to najbardziej czasochłonne podejście i grozi przypadkowym pominięciem kodu wymagającego przeniesienia. Sprawdzi się najlepiej w przypadku, gdy musisz przenieść tylko jedną funkcjonalność - np. tylko mapy.
 2. Z użyciem HMS Convertor.
 - Tylko do HMS API
-: Takie podejście przy całkowicie automatycznej konwersji sprawdzi się tylko wtedy, gdy na wersje do obu sklepów mamy oddzielne projekty w repozytorium. W innym wypadku musielibyśmy przywracać ręcznie implementacje klas Google. Nie jest to złe podejście, zwłaszcza jeśli nie znamy dobrze API HMS.
+: Takie podejście przy całkowicie automatycznej konwersji sprawdzi się tylko wtedy, gdy na wersje do obu sklepów mamy oddzielne projekty w repozytorium. W innym wypadku musielibyśmy przywracać ręcznie implementacje klas Google - i nie będzie to złym sposobem, zwłaszcza jeśli nie znamy dobrze API HMS.
 - Generując kod działający na telefonach z Google Play Service i Huawei Mobile Services (HMS lub GMS first).
 : Podejście umożliwiające utrzymywanie w ramach jednego projektu i jednego flavoru Gradle obu wersji aplikacji. Mało kuszące, kiedy zauważy się, że biblioteki Huawei wymagają wyższego minimalnego API. Nie powinniśmy zabierać użytkownikom starszych telefonów innej marki możliwości aktualizacji tylko dlatego, że umieszczamy inną wersję do Huawei App Gallery. Rozwiązanie polega na zaimportowaniu do projektu modułu, który decyduje, jakich usług konkretnie użyć - HMS czy Usług Google Play. HMS Toolkit posiada narzędzie do aktualizacji tych modułów, problemem tego rozwiązania jest jednak to, że wymaga zmiany kodu używającego Usług Google Play. Istnieje duże prawdopodobieństwo, że bugi w bibliotece HMS spowodują wadliwe działanie aplikacji ze Sklepu Play.
 
 # Jak testować?
 
-Oczywiście najlepiej kupić któryś z ostatnich Huawei, ale jeśli nie mamy takiej możliwości, pomocna będzie wspomniana już [wtyczka][hms-toolkit]. Usługa [Cloud Debugging][hms-cloud-debugging] umożliwia ona testowanie aplikacji na telefonie z farmy urządzeń. Usługa jest darmowa. Jedynym ograniczeniami jest konieczność zmiany urządzenia co dwie godziny i ponownego zalogowania po dwudziestu godzinach korzystania. Urządzenie jest widoczne w Android Studio, można stawiać breakpointy i czytać Logcata, tak jakby ten telefon miało się na biurku.
+Odradzam jakiekolwiek próby instalowania tych usług na telefonach innej firmy. Możliwe, że uda się zainstalować HMS Core, być może nawet z poziomu Sklepu Play, nie gwarantuje to jednak, że wszystkie usługi działały poprawnie. Dwukrotnie 
 
-Brakuje nieco możliwości uruchomienia zwykłego emulatora z EMUI z poziomu AVD Manager. Największą wadą usługi jest jej powolne działanie - długi czas reakcji na kliknięcie czy długi czas pobierania podczas debugowania aplikacji. Jedynym wyjściem będzie skorzystanie z rozwiązania typu [Genymotion][genymotion].
+Najlepiej kupić któryś z ostatnich Huawei. Nada się także któreś ze starszych urządzeń Huawei, na których można mieć zarówno HMS jak i GMS (na przykład Huawei P9). Jeśli nie mamy możliwości posiadania telefonu Huawei, pomocna będzie wspomniana już [wtyczka][hms-toolkit]. Usługa [Cloud Debugging][hms-cloud-debugging] umożliwia testowanie aplikacji na telefonie z farmy urządzeń. Usługa jest darmowa. Jedynym ograniczeniami jest konieczność zmiany urządzenia co dwie godziny i ponownego zalogowania po dwudziestu godzinach korzystania. Urządzenie jest widoczne w Android Studio, można stawiać breakpointy i czytać Logcata, tak jakby ten telefon miało się na biurku.
 
-# Problemy
+Brakuje nieco możliwości uruchomienia zwykłego emulatora z EMUI z poziomu AVD Manager. Największą wadą usługi jest jej powolne działanie - długi czas reakcji na kliknięcie czy długi czas pobierania podczas debugowania aplikacji. Nie ma też możliwości wprowadzania znaków z fizycznej klawiatury, przynajmniej nie znalazłem takiej opcji Jedynym wyjściem będzie skorzystanie z rozwiązania typu [Genymotion][genymotion].
+
+# Napotkane problemy
 
 - Ograniczone opcje clusteringu na mapach
 
-[TODO]
+O clusteringu w mapach HMS na dzień dzisiejszy można powiedzieć tyle, że jest. Biblioteka nie daje możliwości rozróżnienia, co jest pinezką, a co jest grupą pinezek pokazaną jako kółko z liczbą. [Ta metoda][on-marker-click] jest jedynym callbackiem, w którym możemy umieścić kod reagujący na kliknięcie w marker, przy czym nie możemy sprawdzić, czy jest to pinezka czy ich grupa. Zmiana wyglądu samej pinezki nie stanowi problemu, gorzej z grupą właśnie. Dodatkowo programiści zgłaszają, że grupowanie więcej niż stu tysięcy pinezek nie działa płynnie. 
 
-(Rozwinę potem, na razie napiszę tylko, że tymczasowym rozwiązaniem problemu może być ta [„biblioteka”][map-clustering])
+Tymczasowym rozwiązaniem problemu może być ta [„biblioteka”][map-clustering]. Rozwiązuje ona te bolączki, jednak na dzień dzisiejszy nie jest to prawdziwa biblioteka, którą można dodać jako dependencję do pliku build.gradle i aktualizować automatycznie, gdy zaświeci się w IDE na żółto. Ten kod trzeba dodać w całości do projektu i poddawać zmianom, by nadawał się do konkretnej aplikacji, co sprawia, że jest w praktyce nieaktualizowalna. Spełnia swoją funkcję, jednak myślę, że Huawei wkrótce zaproponuje lepsze rozwiązanie, któremu będzie można zaufać.
 
+- Nieintuicyjny, zmieniający się szybciej niż instrukcja obsługi interfejs konsoli
+
+Włączyłem kilka usług w przeznaczonej do tego zakładce, ale w innej nie wybrałem serwera, na którym mają być zbierane dane do analityki. Nie mogłem przez to wygenerować poprawnego pliku agconnect-services.json. Nie zostałem w żaden sposób poinformowany o konieczności zaznaczenia.
+
+- Problemy z działaniem konsoli w przeglądarce Safari
+
+Zapewne żadnego frontendowca to nie zdziwi. Lubię Safari z kilku powodów, ale na wszelki wypadek wolę używać tej konsoli w Google Chrome, na którym nie mam aż tylu problemów. Po zalogowaniu zdarzało mi się wpaść w pętlę przekierowań po próbie wejścia do galerii. Interfejs na Safari wyglądął inaczej i pewnych opcji po prostu nie udało mi się odnaleźć.
+
+Problemy są raczej typowe dla młodego oprogramowania i wierzę, że uda się je naprawić w przyszłości. Huawei rozwijało swoje usługi o siedem lat krócej niż Google i trudno się dziwić, że jest ono niedoskonałe. Z pewnością warto trzymać rękę na pulsie i śledzić zmiany w usługach obu firm, by móc dostarczać funkcjonalne oprogramowanie wszystkim użytkownikom, niezależnie od tego, jakiej marki są ich telefony.
+
+[google-play-services]: https://play.google.com/store/apps/details?id=com.google.android.ims&hl=pl&showAllReviews=true
 [hms-toolkit]: https://developer.huawei.com/consumer/en/huawei-toolkit/
 [codelab-example]: https://developer.huawei.com/consumer/en/codelab/HMSMapKit/index.html#0
 [genymotion]: https://www.genymotion.com/
 [hms-cloud-debugging]: https://developer.huawei.com/consumer/en/doc/development/Tools-Guides/cloud-debugging-0000001051084360
 [map-clustering]: https://github.com/hunterxxx/huawei-map-clustering
+[on-marker-click]: https://developer.huawei.com/consumer/en/doc/HMSCore-References-V5/onmarkerclicklistener-0000001050152047-V5
