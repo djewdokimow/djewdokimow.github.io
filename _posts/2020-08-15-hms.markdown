@@ -59,7 +59,7 @@ Brakuje nieco możliwości uruchomienia zwykłego emulatora z EMUI z poziomu AVD
 
 O clusteringu w mapach HMS na dzień dzisiejszy można powiedzieć tyle, że jest. Biblioteka nie daje możliwości rozróżnienia, co jest pinezką, a co jest grupą pinezek pokazaną jako kółko z liczbą. [Ta metoda][on-marker-click] jest jedynym callbackiem, w którym możemy umieścić kod reagujący na kliknięcie w marker, przy czym nie możemy sprawdzić, czy jest to pinezka czy ich grupa. Zmiana wyglądu samej pinezki nie stanowi problemu, gorzej z grupą właśnie.
 
-Tymczasowym rozwiązaniem problemu może być ta [„biblioteka”][map-clustering]. Rozwiązuje ona te bolączki, jednak na dzień dzisiejszy nie jest to prawdziwa biblioteka, którą można dodać jako dependencję do pliku build.gradle i aktualizować automatycznie, gdy zaświeci się w IDE na żółto. Ten kod trzeba dodać w całości do projektu i poddawać zmianom, by nadawał się do użycia w ramach konkretnej aplikacji, co sprawia, że jest w praktyce nieaktualizowalna. Spełnia swoją funkcję, jednak wierzę, że Huawei wkrótce zaproponuje lepsze rozwiązanie, któremu będzie można zaufać.
+Tymczasowym rozwiązaniem problemu może być ta [„biblioteka”][map-clustering]. Rozwiązuje ona te bolączki, jednak na dzień dzisiejszy nie jest to prawdziwa biblioteka, którą można dodać jako zależność do pliku build.gradle i aktualizować automatycznie, gdy zaświeci się w IDE na żółto. Ten kod trzeba dodać w całości do projektu i poddawać zmianom, by nadawał się do użycia w ramach konkretnej aplikacji, co sprawia, że jest w praktyce nieaktualizowalna. Spełnia swoją funkcję, jednak wierzę, że Huawei wkrótce zaproponuje lepsze rozwiązanie, któremu będzie można zaufać.
 
 - Nieintuicyjny interfejs konsoli
 
@@ -71,7 +71,7 @@ Zapewne żadnego frontendowca to nie zdziwi. Lubię Safari z kilku powodów, ale
 
 # Podsumowanie
 
-Napotkane problemy są raczej typowe dla młodego oprogramowania i wierzę, że uda się je naprawić w przyszłości. Huawei rozwijało swoje usługi o siedem lat krócej niż Google i nie powinno dziwić, że jest ono jeszcze niedoskonałe. Z pewnością warto trzymać rękę na pulsie i śledzić zmiany w usługach obu firm, by móc dostarczać funkcjonalne oprogramowanie wszystkim użytkownikom, niezależnie od tego, jakiej marki są ich telefony. Pomocne w rozbudowie będą świetne instrukcje przeprowadzenia konwersji przygotowane przez firmę oraz fakt fakt, że framework HMS jest bardzo podobny do GMS - udostępniane interfejsy i modele to w większości idealne kopie rozwiązania Google'a.
+Napotkane problemy są raczej typowe dla młodego oprogramowania i wierzę, że uda się je naprawić w przyszłości. Huawei rozwijało swoje usługi o siedem lat krócej niż Google i nie powinno dziwić, że jest ono jeszcze niedoskonałe. Z pewnością warto trzymać rękę na pulsie i śledzić zmiany w usługach obu firm, by móc dostarczać funkcjonalne oprogramowanie wszystkim użytkownikom, niezależnie od tego, jakiej marki są ich telefony. Pomocne w rozbudowie będą świetne instrukcje przeprowadzenia konwersji przygotowane przez firmę oraz fakt, że framework HMS jest bardzo podobny do GMS - udostępniane interfejsy i modele to w większości idealne kopie rozwiązania Google'a.
 
 [google-play-services]: https://play.google.com/store/apps/details?id=com.google.android.ims&hl=pl&showAllReviews=true
 [hms-toolkit]: https://developer.huawei.com/consumer/en/huawei-toolkit/
