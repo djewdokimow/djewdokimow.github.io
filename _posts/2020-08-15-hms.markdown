@@ -7,7 +7,7 @@ categories: Android
 
 [English translation soon]
 
-Najnowsze telefony Huawei (Huawei P40 i P40 Pro, seria Mate 30, Mate Xs) i Honor (Honor 30) nie mają dostępu do Sklepu Play do Usług Google Play. Oznacza to mniej więcej tyle, że jeśli stworzyłeś aplikację na system Android i wrzuciłeś ją tylko do Sklepu Play, to użytkownicy najnowszych telefonów Huawei nie będą ich mogli jej pobrać. Specjalnie dla nich trzeba umieszczać aktualizacje w markecie Huawei App Gallery, jednak bardzo możliwe, że wrzucenie tego samego pliku do obu sklepów nie rozwiąże całkowicie problemu. Jeśli masz w swojej aplikacji którąkolwiek z tych funkcjonalności:
+Najnowsze telefony Huawei (Huawei P40 i P40 Pro, seria Mate 30, Mate Xs) i Honor (Honor 30) nie mają dostępu do Sklepu Play ani do Usług Google Play. Oznacza to mniej więcej tyle, że jeśli stworzyłeś aplikację na system Android i wrzuciłeś ją tylko do Sklepu Play, to użytkownicy najnowszych telefonów Huawei nie będą ich mogli jej pobrać. Specjalnie dla nich trzeba umieszczać aktualizacje w markecie Huawei App Gallery, jednak bardzo możliwe, że wrzucenie tego samego pliku do obu sklepów nie rozwiąże całkowicie problemu. Jeśli masz w swojej aplikacji którąkolwiek z tych funkcjonalności:
 - mapy
 - pobieranie lokalizacji
 - geofencing
