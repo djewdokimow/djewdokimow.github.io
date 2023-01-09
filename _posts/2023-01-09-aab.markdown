@@ -17,27 +17,27 @@ W tym artykule przedstawię najprostszego sposobu na konfigurację panelu w taki
 
 Najpierw należy pozwolić Google Play na zarządzanie kluczem podpisywania aplikacji. W menu konsoli należy wybrać opcję Setup/App integrity, a następnie kliknąć we wstążkę App Signing.
 
-![Play Console App Signing](/djewdokimow/assets/images/play_console_app_signing.png)
+![Play Console App Signing](/docs/assets/images/play_console_app_signing.png)
 
 Teraz należy załadować do panelu klucz prywatny, który jest aktualnie używany do podpisywania aplikacji. Oczywiście nie udostępniamy pliku JKS, tylko z pomocą Android Studio eksportujemy plik o rozszerzeniu PEPK. Opcja jest dostępna podczas budowania paczki APK/AAB z poziomu IDE (Build > Generate Signed Bundle/APK > wybrać Android App Bundle, w następnym dialogu zaznaczyć checkbox podpisany Export encrypted for enrolling published apps in Google Play App Signing).
 
-![Exporting PEPK](/djewdokimow/assets/images/exporting_pepk.png)
+![Exporting PEPK](/docs/assets/images/bundle_explorer.png)
 
 Nieobowiązkowym krokiem konfiguracji jest wygenerowanie nowego klucza w celu podpisania nim aplikacji. Warto go wykonać, ponieważ umożliwia on podpisywanie aplikacji nowym kluczem, który można zastąpić w dowolnym momencie w przypadku jego utraty lub kompromitacji. Należy utworzyć nowy klucz i od tej pory właśnie niego będziemy używać do podpisywania paczek z kolejnymi aktualizacjami. 
 
-![New Keystore](/djewdokimow/assets/images/new_keystore.png)
+<img src="/docs/assets/images/new_keystore.png" width="400"/>
 
 Po utworzeniu nowego klucza należy wygenerować w terminalu plik PEM za pomocą komendy keytool -export -rfc -keystore nazwa_keystore.jks -alias nazwa_aliasa upload -alias nazwa_pliku_wyjsciowego.pem i załadować plik PEM, klikając opcję Upload your upload key certificate. Następnie należy zatwierdzić zmiany, klikając w przycisk Save i zaakceptować regulamin.
 
-![Upload Key PEM](/djewdokimow/assets/images/upload_key_pem.png)
+![Upload Key PEM](/docs/assets/images/upload_key_pem.png)
 
 Od tej pory teoretycznie nie musimy przechowywać naszego oryginalnego klucza. Należy pamiętać o tym, by nie przechowywać żadnego klucza (ani oryginalnego, ani tego którym będziemy teraz podpisywać aplikację) razem z kodem aplikacji. 
 
-![Success](/djewdokimow/assets/images/success.png)
+![Success](/docs/assets/images/success.png)
 
 Od tej pory konsola przyjmuje pliki AAB.
 
-![Bundle Explorer](/djewdokimow/assets/images/bundle_explorer.png)
+![Bundle Explorer](/docs/assets/images/bundle_explorer.png)
 
 Klucz do podpisywania aplikacji można wymieniać raz do roku. Klucza do przesyłania aplikacji wymieniać nie można, ale ponieważ jest on zarządzany przez Google, w przypadku jego utraty lub wycieku można skontaktować się z pomocą techniczną i liczyć na rozwiązanie problemu.
 
