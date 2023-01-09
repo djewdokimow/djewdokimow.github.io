@@ -9,25 +9,25 @@ Aplikacje Android, które powstały w sierpniu 2021 lub później, mogą być do
 
 # Korzyści stosowania formatu AAB
 
-Po pierwsze, AAB pozwala zmniejszyć liczbę danych pobieranych na urządzenie użytkownika. Artefakt aplikacji z każdym kolejnym wydaniem robi się cięższy i nawet w dobie wszechobecnego mobilnego internetu użytkownik nie musi być zachwycony koniecznością pobierania kolejnych 90 megabajtów na swoje urządzenie. Sam plik instalacyjny waży tyle samo co starszy format, ale Google Play nie dopuszcza do pobierania przez użytkownika grafik w rozdzielczości innej niż jego ekran czy danych związanych z innymi wersjami językowymi. Po drugie, przemawiają za tym względy bezpieczeństwa. AAB wymusza zastosowanie „idiotoodpornego” mechanizmu, który chroni klucz przed skutkami jego utraceniem i skutkami dostania się w niepowołane ręce. Po trzecie, formatu AAB nie można w tej chwili nazwać żadną nowością i lepiej zapoznać się z formatem APK trochę wcześniej niż przy okazji lektury maila ogłaszającego datę końca wsparcia dla formatu APK przez Google Play Console.
+Po pierwsze, AAB pozwala zmniejszyć liczbę danych pobieranych na urządzenie użytkownika. Artefakt aplikacji z każdym kolejnym wydaniem robi się cięższy i nawet w dobie wszechobecnego mobilnego internetu użytkownik nie musi być zachwycony koniecznością pobierania kolejnych 90 megabajtów na swoje urządzenie. Sam plik instalacyjny waży tyle samo co jego odpowiednik w starszym formacie, ale Google Play nie dopuszcza do pobierania przez użytkownika grafik w rozdzielczości innej niż jego ekran czy danych związanych z innymi wersjami językowymi. Po drugie, przemawiają za tym względy bezpieczeństwa. AAB wymusza zastosowanie „idiotoodpornego” mechanizmu, który chroni klucz przed skutkami jego utraceniem i skutkami dostania się w niepowołane ręce. Po trzecie, formatu AAB nie można w tej chwili nazwać żadną nowością. Lepiej zapoznać się z formatem APK trochę wcześniej niż przy okazji lektury maila ogłaszającego datę końca wsparcia dla formatu APK przez Google Play Console.
 
 # Konfiguracja w panelu Google Play Console
 
-W tym artykule przedstawię najprostszego sposobu na konfigurację panelu w taki sposób, by możliwe było dostarczanie aktualizacji w formacie AAB. Zakładam, że klucz do podpisywania aplikacji używany do tej pory ma rozszerzenie .keystore. Pominę też kwestię modularyzacji projektu. Już same opcje domyślne dają zaskakujące rezultaty (ilość danych pobranych na Samsung J5 2017 w przypadku jednej z rozwijanych przeze mnie aplikacji skurczył się do niecałych 30 MB dla nowych użytkowników, zarówno plik APK jak i AAB ważą około 70 MB). 
+W tym artykule przedstawię najprostszego sposobu na konfigurację panelu w taki sposób, by możliwe było dostarczanie aktualizacji w formacie AAB. Zakładam, że klucz do podpisywania aplikacji używany do tej pory ma rozszerzenie .keystore. Pominę kwestię modularyzacji projektu.Same opcje domyślne dają zaskakujące rezultaty. Dla przykładu, ilość danych pobranych na Samsung J5 2017 w przypadku jednej z rozwijanych przeze mnie aplikacji skurczył się do niecałych 30 MB dla nowych użytkowników, zarówno plik APK jak i AAB ważą około 70 MB.
 
-Najpierw należy pozwolić Google Play na zarządzanie kluczem podpisywania aplikacji. W menu konsoli należy wybrać opcję Setup/App integrity, a następnie kliknąć we wstążkę App Signing.
+Najpierw należy zezwolić Google Play na zarządzanie kluczem podpisywania aplikacji. W menu konsoli należy wybrać opcję Setup/App Integrity, a następnie kliknąć we wstążkę App Signing.
 
 ![Play Console App Signing](/docs/assets/images/play_console_app_signing.png)
 
-Teraz należy załadować do panelu klucz prywatny, który jest aktualnie używany do podpisywania aplikacji. Oczywiście nie udostępniamy pliku JKS, tylko z pomocą Android Studio eksportujemy plik o rozszerzeniu PEPK. Opcja jest dostępna podczas budowania paczki APK/AAB z poziomu IDE (Build > Generate Signed Bundle/APK > wybrać Android App Bundle, w następnym dialogu zaznaczyć checkbox podpisany Export encrypted for enrolling published apps in Google Play App Signing).
+Teraz należy załadować do panelu klucz prywatny, który jest aktualnie używany do podpisywania aplikacji. Oczywiście nie udostępniamy pliku JKS, tylko z pomocą Android Studio eksportujemy plik o rozszerzeniu PEPK. Opcja jest dostępna podczas budowania paczki APK/AAB w IDE (Build > Generate Signed Bundle/APK > wybrać Android App Bundle, w następnym dialogu zaznaczyć checkbox podpisany Export encrypted for enrolling published apps in Google Play App Signing).
 
 ![Exporting PEPK](/docs/assets/images/bundle_explorer.png)
 
-Nieobowiązkowym krokiem konfiguracji jest wygenerowanie nowego klucza w celu podpisania nim aplikacji. Warto go wykonać, ponieważ umożliwia on podpisywanie aplikacji nowym kluczem, który można zastąpić w dowolnym momencie w przypadku jego utraty lub kompromitacji. Należy utworzyć nowy klucz i od tej pory właśnie niego będziemy używać do podpisywania paczek z kolejnymi aktualizacjami. 
+Nieobowiązkowym krokiem konfiguracji jest wygenerowanie nowego klucza w celu podpisania nim aplikacji. Warto go wykonać, ponieważ oryginalny klucz będzie można zastąpić w dowolnym momencie w przypadku jego utraty lub kompromitacji. Nowego klucz od tej pory będziemy używać do podpisywania paczek z kolejnymi aktualizacjami.
 
 <img src="/docs/assets/images/new_keystore.png" width="400"/>
 
-Po utworzeniu nowego klucza należy wygenerować w terminalu plik PEM za pomocą komendy keytool -export -rfc -keystore nazwa_keystore.jks -alias nazwa_aliasa upload -alias nazwa_pliku_wyjsciowego.pem i załadować plik PEM, klikając opcję Upload your upload key certificate. Następnie należy zatwierdzić zmiany, klikając w przycisk Save i zaakceptować regulamin.
+Po utworzeniu nowego klucza należy wygenerować w terminalu plik PEM za pomocą komendy `keytool -export -rfc -keystore nazwa_keystore.jks -alias nazwa_aliasa upload -alias nazwa_pliku_wyjsciowego.pem` i załadować plik PEM, klikając opcję Upload your upload key certificate. Następnie należy zatwierdzić zmiany, klikając w przycisk Save i zaakceptować regulamin.
 
 ![Upload Key PEM](/docs/assets/images/upload_key_pem.png)
 
@@ -35,7 +35,7 @@ Od tej pory teoretycznie nie musimy przechowywać naszego oryginalnego klucza. N
 
 ![Success](/docs/assets/images/success.png)
 
-Od tej pory konsola przyjmuje pliki AAB.
+Konsola zaczyna akceptować pliki AAB. Przed wykonaniem powyższych kroków było to niemożliwe. 
 
 ![Bundle Explorer](/docs/assets/images/bundle_explorer.png)
 
