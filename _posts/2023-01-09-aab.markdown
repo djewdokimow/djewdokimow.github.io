@@ -1,0 +1,48 @@
+---
+layout: post
+title:  "AAB i podpisywanie aplikacji w Google Play Console"
+date:   2023-01-09 13:00:00 +0200
+categories: Android
+---
+
+Aplikacje Android, które powstały w sierpniu 2021 lub później, mogą być dostarczane do konsoli Google jedynie w formacie AAB. Jeśli pracujesz nad aplikacją, która powstała wcześniej, to możliwe, że w myśl zasady „po co zmieniać coś, co działa” ciągle budujesz swoje paczki w formacie APK. Istnieje co najmniej kilka dobrych powodów, by to zmienić.
+
+# Korzyści stosowania formatu AAB
+
+Po pierwsze, AAB pozwala zmniejszyć liczbę danych pobieranych na urządzenie użytkownika. Artefakt aplikacji z każdym kolejnym wydaniem robi się cięższy i nawet w dobie wszechobecnego mobilnego internetu użytkownik nie musi być zachwycony koniecznością pobierania kolejnych 90 megabajtów na swoje urządzenie. Sam plik instalacyjny waży tyle samo co starszy format, ale Google Play nie dopuszcza do pobierania przez użytkownika grafik w rozdzielczości innej niż jego ekran czy danych związanych z innymi wersjami językowymi. Po drugie, przemawiają za tym względy bezpieczeństwa. AAB wymusza zastosowanie „idiotoodpornego” mechanizmu, który chroni klucz przed skutkami jego utraceniem i skutkami dostania się w niepowołane ręce. Po trzecie, formatu AAB nie można w tej chwili nazwać żadną nowością i lepiej zapoznać się z formatem APK trochę wcześniej niż przy okazji lektury maila ogłaszającego datę końca wsparcia dla formatu APK przez Google Play Console.
+
+# Konfiguracja w panelu Google Play Console
+
+W tym artykule przedstawię najprostszego sposobu na konfigurację panelu w taki sposób, by możliwe było dostarczanie aktualizacji w formacie AAB. Zakładam, że klucz do podpisywania aplikacji używany do tej pory ma rozszerzenie .keystore. Pominę też kwestię modularyzacji projektu. Już same opcje domyślne dają zaskakujące rezultaty (ilość danych pobranych na Samsung J5 2017 w przypadku jednej z rozwijanych przeze mnie aplikacji skurczył się do niecałych 30 MB dla nowych użytkowników, zarówno plik APK jak i AAB ważą około 70 MB). 
+
+Najpierw należy pozwolić Google Play na zarządzanie kluczem podpisywania aplikacji. W menu konsoli należy wybrać opcję Setup/App integrity, a następnie kliknąć we wstążkę App Signing.
+
+![Play Console App Signing](/djewdokimow/docs/assets/images/play_console_app_signing.png)
+
+Teraz należy załadować do panelu klucz prywatny, który jest aktualnie używany do podpisywania aplikacji. Oczywiście nie udostępniamy pliku JKS, tylko z pomocą Android Studio eksportujemy plik o rozszerzeniu PEPK. Opcja jest dostępna podczas budowania paczki APK/AAB z poziomu IDE (Build > Generate Signed Bundle/APK > wybrać Android App Bundle, w następnym dialogu zaznaczyć checkbox podpisany Export encrypted for enrolling published apps in Google Play App Signing).
+
+![Exporting PEPK](/djewdokimow/docs/assets/images/exporting_pepk.png)
+
+Nieobowiązkowym krokiem konfiguracji jest wygenerowanie nowego klucza w celu podpisania nim aplikacji. Warto go wykonać, ponieważ umożliwia on podpisywanie aplikacji nowym kluczem, który można zastąpić w dowolnym momencie w przypadku jego utraty lub kompromitacji. Należy utworzyć nowy klucz i od tej pory właśnie niego będziemy używać do podpisywania paczek z kolejnymi aktualizacjami. 
+
+![New Keystore](/djewdokimow/docs/assets/images/new_keystore.png)
+
+Po utworzeniu nowego klucza należy wygenerować w terminalu plik PEM za pomocą komendy keytool -export -rfc -keystore nazwa_keystore.jks -alias nazwa_aliasa upload -alias nazwa_pliku_wyjsciowego.pem i załadować plik PEM, klikając opcję Upload your upload key certificate. Następnie należy zatwierdzić zmiany, klikając w przycisk Save i zaakceptować regulamin.
+
+![Upload Key PEM](/djewdokimow/docs/assets/images/upload_key_pem.png)
+
+Od tej pory teoretycznie nie musimy przechowywać naszego oryginalnego klucza. Należy pamiętać o tym, by nie przechowywać żadnego klucza (ani oryginalnego, ani tego którym będziemy teraz podpisywać aplikację) razem z kodem aplikacji. 
+
+![Success](/djewdokimow/docs/assets/images/success.png)
+
+Od tej pory konsola przyjmuje pliki AAB.
+
+![Bundle Explorer](/djewdokimow/docs/assets/images/bundle_explorer.png)
+
+Klucz do podpisywania aplikacji można wymieniać raz do roku. Klucza do przesyłania aplikacji wymieniać nie można, ale ponieważ jest on zarządzany przez Google, w przypadku jego utraty lub wycieku można skontaktować się z pomocą techniczną i liczyć na rozwiązanie problemu.
+
+# Możliwe problemy
+
+Szczególną uwagę polecam zwrócić na to, czy zbudowana w nowy sposób aplikacja będą potrafiła korzystać z zewnętrznych usług takich jak mapy, analityka czy powiadomienia push. Jeśli używamy usług Google (lub jakichkolwiek powiązanych z podpisem cyfrowym aplikacji), należy zaktualizować hashe SHA1 i SHA256 w ich panelach (warto sprawdzić w pierwszej kolejności Firebase i Google Cloud). Ważna uwaga: jeśli wystawiamy bety na Firebase, podpis cyfrowy aplikacji jest wymieniany na testowy, należy więc skopiować odpowiednie hashe z panelu i użyć ich w taki sam sposób jak tych z zakładki App Signing panelu Google Play.
+
+Polecam postępować zgodnie ze sztuką i po zbudowaniu aplikacji w nowy sposób przetestować całą aplikację. Instalacja z paczki AAB nie jest aż tak banalna jak w przypadku plików APK i potrzebujemy do niej konsolowego narzędzia bundletool. Możemy też wystawić betę na Firebase/poprzez testy wewnętrzne Google Play.

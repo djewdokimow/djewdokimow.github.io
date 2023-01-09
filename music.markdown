@@ -6,6 +6,18 @@ permalink: /music/
 
 Dzielę się najciekawszymi albumami muzycznymi przesłuchanymi w pracy.
 
+<h3>Przesłuchane 2-5 stycznia 2023 r.</h3>
+
+1. Queen „The Platinum Collection”
+: Leben auf eigene Faust. Tak by się pewnie nazywała jedna z piosenek z tego wydawnictwa, gdyby coverował ją Laibach.
+2. Linkin Park „Meteora”
+: Mieć znowu 13 lat.
+3. Death In June „But What If When The Symbols Shatter”
+: Niby trzy akordy na krzyż, ale jaki to ma klimat.
+4. The Bug „Fire”
+5. Armia „Czas i Byt”
+
+
 <h3>Przesłuchane 3-7 sierpnia 2020 r.</h3>
 
 1. Batushka „Raskol”
