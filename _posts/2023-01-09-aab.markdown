@@ -9,7 +9,7 @@ Aplikacje Android, które powstały w sierpniu 2021 lub później, mogą być do
 
 # Korzyści stosowania formatu AAB
 
-Po pierwsze, AAB pozwala zmniejszyć liczbę danych pobieranych na urządzenie użytkownika. Artefakt aplikacji z każdym kolejnym wydaniem robi się cięższy i nawet w dobie wszechobecnego mobilnego internetu użytkownik nie musi być zachwycony koniecznością pobierania kolejnych 90 megabajtów na swoje urządzenie. Sam plik instalacyjny waży tyle samo co jego odpowiednik w starszym formacie, ale Google Play nie dopuszcza do pobierania przez użytkownika grafik w rozdzielczości innej niż jego ekran czy danych związanych z innymi wersjami językowymi. Po drugie, przemawiają za tym względy bezpieczeństwa. AAB wymusza zastosowanie „idiotoodpornego” mechanizmu, który chroni klucz przed skutkami jego utraceniem i skutkami dostania się w niepowołane ręce. Po trzecie, formatu AAB nie można w tej chwili nazwać żadną nowością. Lepiej zapoznać się z formatem APK trochę wcześniej niż przy okazji lektury maila ogłaszającego datę końca wsparcia dla formatu APK przez Google Play Console.
+Po pierwsze, AAB pozwala zmniejszyć liczbę danych pobieranych na urządzenie użytkownika. Artefakt aplikacji z każdym kolejnym wydaniem robi się cięższy i nawet w dobie wszechobecnego mobilnego internetu użytkownik nie musi być zachwycony koniecznością pobierania kolejnych 90 megabajtów na swoje urządzenie. Sam plik instalacyjny waży tyle samo co jego odpowiednik w starszym formacie, ale Google Play nie dopuszcza do pobierania przez użytkownika grafik w rozdzielczości innej niż jego ekran czy danych związanych z innymi wersjami językowymi. Po drugie, przemawiają za tym względy bezpieczeństwa. AAB wymusza zastosowanie „idiotoodpornego” mechanizmu, który chroni klucz przed skutkami jego utracenia i dostania się w niepowołane ręce. Po trzecie, formatu AAB nie można w tej chwili nazwać żadną nowością. Lepiej zapoznać się z formatem APK trochę wcześniej niż przy okazji lektury maila ogłaszającego datę końca wsparcia dla formatu APK przez Google Play Console.
 
 # Konfiguracja w panelu Google Play Console
 
@@ -21,17 +21,15 @@ Najpierw należy zezwolić Google Play na zarządzanie kluczem podpisywania apli
 
 Teraz należy załadować do panelu klucz prywatny, który jest aktualnie używany do podpisywania aplikacji. Oczywiście nie udostępniamy pliku JKS, tylko z pomocą Android Studio eksportujemy plik o rozszerzeniu PEPK. Opcja jest dostępna podczas budowania paczki APK/AAB w IDE (Build > Generate Signed Bundle/APK > wybrać Android App Bundle, w następnym dialogu zaznaczyć checkbox podpisany Export encrypted for enrolling published apps in Google Play App Signing).
 
-![Exporting PEPK](/docs/assets/images/bundle_explorer.png)
+<img src="/docs/assets/images/exporting_pepk.png" width="400"/>
 
-Nieobowiązkowym krokiem konfiguracji jest wygenerowanie nowego klucza w celu podpisania nim aplikacji. Warto go wykonać, ponieważ oryginalny klucz będzie można zastąpić w dowolnym momencie w przypadku jego utraty lub kompromitacji. Nowego klucz od tej pory będziemy używać do podpisywania paczek z kolejnymi aktualizacjami.
+Nieobowiązkowym krokiem konfiguracji jest wygenerowanie nowego klucza w celu podpisania nim aplikacji. Warto go wykonać, ponieważ oryginalny klucz będzie można zastąpić w dowolnym momencie w przypadku jego utraty lub kompromitacji. Od tej pory używać do podpisywania paczek z kolejnymi aktualizacjami będziemy używać nowego klucza. Zarówno oryginalny jak i nowy plik keystore należy przechowywać - jak rekomenduje Google - w bezpiecznym miejscu. Na pytanie, co to właściwie znaczy, każdy musi odpowiedzieć we własnym zakresie albo po prostu postępować zgoodnie z wewnętrznymi procedurami firmy. Repozytorium projektu jest całkiem bezpiecznym miejscem do przechowywania klucza, o ile mówimy o prywatnym projekcie, do którego dostęp mają tylko uprawnieni użytkownicy, a sama aplikacja repozytorium jest chroniona przez VPN i dwuetapową weryfikację. Jeśli ktoś był w stanie przełamać tyle zabezpieczeń, możemy uznać, że dostęp do kluczy po prostu mu się należał. Inna sprawa, że konsekwencje utraty klucza są nieporównywalnie bardziej dotkliwe niż jego wyciek.
 
 <img src="/docs/assets/images/new_keystore.png" width="400"/>
 
-Po utworzeniu nowego klucza należy wygenerować w terminalu plik PEM za pomocą komendy `keytool -export -rfc -keystore nazwa_keystore.jks -alias nazwa_aliasa upload -alias nazwa_pliku_wyjsciowego.pem` i załadować plik PEM, klikając opcję Upload your upload key certificate. Następnie należy zatwierdzić zmiany, klikając w przycisk Save i zaakceptować regulamin.
+Po utworzeniu nowego klucza należy wygenerować w terminalu plik PEM za pomocą komendy `keytool -export -rfc -keystore nazwa_keystore.jks -alias nazwa_aliasa upload -alias nazwa_pliku_wyjsciowego.pem` i załadować plik PEM, klikając opcję Upload your upload key certificate. Następnie należy zatwierdzić zmiany, klikając w przycisk Save i zaakceptować regulamin. Od tej pory (teoretycznie) nie musimy przechowywać naszego oryginalnego klucza.
 
 ![Upload Key PEM](/docs/assets/images/upload_key_pem.png)
-
-Od tej pory teoretycznie nie musimy przechowywać naszego oryginalnego klucza. Należy pamiętać o tym, by nie przechowywać żadnego klucza (ani oryginalnego, ani tego którym będziemy teraz podpisywać aplikację) razem z kodem aplikacji. 
 
 ![Success](/docs/assets/images/success.png)
 
