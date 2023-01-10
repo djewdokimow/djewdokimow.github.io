@@ -13,7 +13,7 @@ Po pierwsze, AAB pozwala zmniejszyć liczbę danych pobieranych na urządzenie u
 
 # Konfiguracja w panelu Google Play Console
 
-W tym artykule przedstawię najprostszego sposobu na konfigurację panelu w taki sposób, by możliwe było dostarczanie aktualizacji w formacie AAB. Zakładam, że klucz do podpisywania aplikacji używany do tej pory ma rozszerzenie .keystore. Pominę kwestię modularyzacji projektu. Już same opcje domyślne dają zaskakujące rezultaty. Dla przykładu, ilość danych pobranych na Samsung J5 2017 w przypadku jednej z rozwijanych przeze mnie aplikacji skurczył się do niecałych 30 MB dla nowych użytkowników, zarówno plik APK jak i AAB ważą około 70 MB.
+W tym artykule przedstawię najprostszego sposobu na konfigurację panelu w taki sposób, by możliwe było dostarczanie aktualizacji w formacie AAB. Pominę kwestię modularyzacji projektu. Już same opcje domyślne dają zaskakujące rezultaty. Dla przykładu, ilość danych pobranych na Samsung J5 2017 w przypadku jednej z rozwijanych przeze mnie aplikacji skurczył się do niecałych 30 MB dla nowych użytkowników, zarówno plik APK jak i AAB ważą około 70 MB.
 
 Najpierw należy zezwolić Google Play na zarządzanie kluczem podpisywania aplikacji. W menu konsoli należy wybrać opcję Setup/App Integrity, a następnie kliknąć we wstążkę App Signing.
 
