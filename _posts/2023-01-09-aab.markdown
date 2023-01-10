@@ -5,7 +5,7 @@ date:   2023-01-09 13:00:00 +0200
 categories: Android
 ---
 
-Aplikacje Android, które powstały w sierpniu 2021 lub później, mogą być dostarczane do konsoli Google jedynie w formacie AAB. Jeśli pracujesz nad aplikacją, która powstała wcześniej, to możliwe, że w myśl zasady „po co zmieniać coś, co działa” ciągle budujesz swoje paczki w formacie APK. Istnieje co najmniej kilka dobrych powodów, by to zmienić.
+Aplikacje Android, które powstały w sierpniu 2021 lub później, mogą być dostarczane do konsoli Google jedynie w formacie AAB. Jeśli pracujesz nad aplikacją, która powstała wcześniej, to możliwe, że w myśl zasady „po co zmieniać coś, co działa” ciągle budujesz swoje paczki w formacie APK. Istnieje co najmniej kilka dobrych powodów, by w tym konkretnym przypadku złamać tę regułę.
 
 # Korzyści stosowania formatu AAB
 
